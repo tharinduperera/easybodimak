@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>News</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Bluesky template project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="plugins/rangeslider.js-2.3.0/rangeslider.css">
+    <link rel="stylesheet" type="text/css" href="styles/news.css">
+    <link rel="stylesheet" type="text/css" href="styles/news_responsive.css">
+    <link rel="stylesheet" type="text/css" href="styles/contact.css">
+    <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
+    <link rel="stylesheet" type="text/css" href="styles/login.css">
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyC2SRqGj47QXhlXfMu7kgiNKZuXUDkbVvs",
+            authDomain: "easybodimak.firebaseapp.com",
+            databaseURL: "https://easybodimak.firebaseio.com",
+            projectId: "easybodimak",
+            storageBucket: "easybodimak.appspot.com",
+            messagingSenderId: "207246146985"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script>
+        function initialize() {
+            var myLatlng = new google.maps.LatLng(-34.397, 150.644);
+            var myOptions = {
+                zoom: 8,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var map = new google.maps.Map(document.getElementById("map1"), myOptions);
+        }
+
+        function loadScript() {
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=initialize";
+            document.body.appendChild(script);
+        }
+
+        window.onload = loadScript;
+
+
+    </script>
+</head>
+<body>
+
+<div class="super_container">
+
+    <!-- Header -->
+
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                        <div>
+                            <a href="index.html"><img src="images/logoo.png" height="60" width="170"/></a>
+                        </div>
+                        <nav class="main_nav" style="margin-left: 80px">
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="boardinghouses.html">Boarding Houses</a></li>
+                                <li class="active"><a data-toggle="modal" data-target="#myModal" href="#">My Account</a></li>
+                                <li><a href="about.html">About us</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </nav>
+                        <div class="phone_num ml-auto">
+                            <div class="phone_num_inner">
+                                <a data-toggle="modal" data-target="#myModal" href="#"><img src="images/phone.png" alt=""/><span>Post Your Ad</span></a>
+                            </div>
+                        </div>
+                        <div class="hamburger ml-auto"><i class="fa fa-bars" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container">
+
+                        <div class="row" style="margin-top:20px">
+                            <div class="col-12 ">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <form role="form">
+                                    <fieldset>
+                                        <h2>Please Sign In</h2>
+                                        <hr class="colorgraph"/>
+                                        <div class="form-group">
+                                            <input type="email" name="email" id="email" class="form-control input-lg"
+                                                   placeholder="Email Address"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="password" id="password"
+                                                   class="form-control input-lg" placeholder="Password"/>
+                                        </div>
+                                        <span class="button-checkbox">
+                                            <button type="button" class="btn-primary" data-color="info"><input
+                                                    type="checkbox" name="remember_me" id="remember_me"
+                                                    checked="checked"
+                                                    class="hidden"/>Remember Me
+                                            </button>
+                                            <a href="" class="btn btn-link pull-right">Forgot Password?</a>
+                                        </span>
+                                        <hr class="colorgraph"/>
+                                        <div class="row">
+                                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                                <input type="submit" class="btn btn-lg btn-success btn-block"
+                                                       value="Sign In" id="btnSignin"/>
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                                <input type="button" class="btn btn-lg btn-primary btn-block"
+                                                       data-toggle="modal" data-target="#myModal1" value="Register"
+                                                       id="btnRegister"/>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal1 -->
+    <div id="myModal1" class="modal fade1" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <form role="form">
+                                    <h2>Please Sign Up
+                                        <small>It's free and always will be.</small>
+                                    </h2>
+                                    <hr class="colorgraph">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="first_name" id="first_name"
+                                                       class="form-control input-lg" placeholder="First Name"
+                                                       tabindex="1">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="last_name" id="last_name"
+                                                       class="form-control input-lg" placeholder="Last Name"
+                                                       tabindex="2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="display_name" id="display_name"
+                                               class="form-control input-lg" placeholder="Display Name" tabindex="3">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" name="email" id="email1" class="form-control input-lg"
+                                               placeholder="Email Address" tabindex="4">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <input type="password" name="password" id="password1"
+                                                       class="form-control input-lg" placeholder="Password"
+                                                       tabindex="5">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <input type="password" name="password_confirmation"
+                                                       id="password_confirmation" class="form-control input-lg"
+                                                       placeholder="Confirm Password" tabindex="6">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-3 col-md-3">
+                                            <span class="button-checkbox">
+                                                <button type="button" class="btn" data-color="info"
+                                                        tabindex="7">I Agree</button>
+                                                <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden"
+                                                       value="1">
+                                            </span>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-9 col-md-9">
+                                            By clicking <strong class="label label-primary">Register</strong>, you agree
+                                            to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and
+                                            Conditions</a> set out by this site, including our Cookie Use.
+                                        </div>
+                                    </div>
+
+                                    <hr class="colorgraph">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-6"><input type="submit" value="Register"
+                                                                               class="btn btn-primary btn-block btn-lg"
+                                                                               tabindex="7" id="btnRegister1"></div>
+                                        <div class="col-xs-12 col-md-6"><input type="button"
+                                                                               class="btn btn-lg btn-success btn-block"
+                                                                               data-toggle="modal"
+                                                                               data-target="#myModal" value="Sign In"
+                                                                               id="btnSignin1"/></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog"
+                             aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque,
+                                            modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis
+                                            perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem
+                                            ad.</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque,
+                                            modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis
+                                            perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem
+                                            ad.</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque,
+                                            modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis
+                                            perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem
+                                            ad.</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque,
+                                            modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis
+                                            perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem
+                                            ad.</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque,
+                                            modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis
+                                            perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem
+                                            ad.</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque,
+                                            modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis
+                                            perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem
+                                            ad.</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque,
+                                            modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis
+                                            perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem
+                                            ad.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">I Agree
+                                        </button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Menu -->
+
+    <div class="menu trans_500">
+        <div class="menu_content d-flex flex-column align-items-center justify-content-center text-center">
+            <div class="menu_close_container">
+                <div class="menu_close"></div>
+            </div>
+            <div class="logo menu_logo">
+                <a href="#">
+                    <div class="logo_container d-flex flex-row align-items-start justify-content-start">
+                        <div class="logo_image">
+                            <div><img src="images/logo.png" alt=""/></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <ul>
+                <li class="menu_item"><a href="index.html">Home</a></li>
+                <li class="menu_item"><a href="boardinghouses.html">Properties</a></li>
+                <li class="menu_item"><a href="users.html">Users</a></li>
+                <li class="menu_item"><a href="about.html">About us</a></li>
+                <li class="menu_item"><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="menu_phone"><span>call us: </span>+94 77 6143085</div>
+    </div>
+
+    <!-- Home -->
+
+    <div class="home" style="height: 550px">
+        <div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/forrent.jpg"
+             data-speed="0.8"></div>
+        <div class="home_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="home_content d-flex flex-row align-items-end justify-content-start">
+                            <div class="breadcrumbs ml-auto">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li>Your Ads</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Users -->
+    <div class="news">
+        <div class="container">
+            <div class="row">
+
+                <!-- Sidebar -->
+                <div class="col-lg-8">
+                    <div class="sidebar">
+
+                        <!--&lt;!&ndash; Search &ndash;&gt;-->
+                        <!--<div class="col-4" style="margin-left: 750px">-->
+                        <!--<form action="#" class="sidebar_top_search_form">-->
+                        <!--<input type="text" class="sidebar_top_search_input" placeholder="Search" required="required"/>-->
+                        <!--<button class="sidebar_top_search_button"><i class="fa fa-search" aria-hidden="true"></i></button>-->
+                        <!--</form>-->
+                        <!--</div>-->
+
+
+                        <!-- Sidebar Search -->
+                        <div class="sidebar_search">
+                            <div class="sidebar_search_title">Post Your Ad</div>
+                            <div class="sidebar_search_form_container">
+                                <div>
+                                    <input id="ad_title" type="title" class="contact_input" placeholder="Ad Title"
+                                           required="required"
+                                           style="background-color: white"/>
+                                </div>
+                                <br/>
+                                <select id="ad_category" class="sidebar_search_select">
+                                    <option disabled selected>Category</option>
+                                    <option>Luxury</option>
+                                    <option>Semi-Luxury</option>
+                                    <option>Normal</option>
+                                </select>
+                                <!--<select class="sidebar_search_select">-->
+                                <!--<optgroup label="Location">-->
+                                <!--</optgroup>-->
+                                <!--<optgroup label="German Cars">-->
+                                <!--<option value="mercedes">Mercedes</option>-->
+                                <!--<option value="audi">Audi</option>-->
+                                <!--</optgroup>-->
+                                <!--</select>-->
+
+                                <select id="ad_location" class="sidebar_search_select">
+                                    <option disabled selected>Location</option>
+                                    <option>Colombo</option>
+                                    <option>Gampaha</option>
+                                    <option>Kaluthara</option>
+                                    <option>Kurunegala</option>
+                                    <option>Anuradhapura</option>
+                                    <option>Polonnaruwa</option>
+                                    <option>Kegalle</option>
+                                    <option>Mathara</option>
+                                    <option>Mathale</option>
+                                    <option>Mannar</option>
+                                    <option>Jaffna</option>
+                                    <option>Batticaloa</option>
+                                    <option>Ampara</option>
+                                    <option>Galle</option>
+                                    <option>Badulla</option>
+                                    <option>Kandy</option>
+                                    <option>Kilinochchi</option>
+                                    <option>Nuwara Eliya</option>
+                                    <option>Monaragala</option>
+                                    <option>Mullativu</option>
+                                    <option>Puttalam</option>
+                                    <option>Hambanthota</option>
+                                    <option>Rathnapura</option>
+                                    <option>Vauniya</option>
+                                    <option>Trincomale</option>
+                                </select>
+
+                                <div class="row sidebar_search_row">
+                                    <div class="col-lg-6">
+                                        <select id="ad_bedrooms" class="sidebar_search_select">
+                                            <option disabled selected>No Of Bedrooms</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <select id="ad_bathrooms" class="sidebar_search_select">
+                                            <option disabled selected>No Of Bathrooms</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
+                                        <br/>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <label>Ad Your Images(maximum 5 images)</label><br/>
+                                        <img id="adimg" src="images/dummyimage.png"/><label style="margin-left: 20px">
+                                        Main Image</label><input id="imgbtn1" type="file" style="padding-left: 20px"
+                                                                 onchange="onFileSelected(event)"/><br/><br/>
+                                        <img id="adimg1" src="images/dummyimage.png"/><input id="imgbtn2" type="file"
+                                                                                             style="margin-left: 224px"
+                                                                                             onchange="onFileSelected1(event)"/>
+                                        <button id="remove">Remove</button>
+                                        <br/><br/>
+                                        <img id="adimg2" src="images/dummyimage.png"/><input id="imgbtn3" type="file"
+                                                                                             style="margin-left: 224px"
+                                                                                             onchange="onFileSelected2(event)"/><br/><br/>
+                                        <img id="adimg3" src="images/dummyimage.png"/><input id="imgbtn4" type="file"
+                                                                                             style="margin-left: 224px"
+                                                                                             onchange="onFileSelected3(event)"/><br/><br/>
+                                        <img id="adimg4" src="images/dummyimage.png"/><input id="imgbtn5" type="file"
+                                                                                             style="margin-left: 224px"
+                                                                                             onchange="onFileSelected4(event)"/><br/><br/>
+                                    </div>
+
+                                    <br/><br/>
+                                </div>
+                                <br/><br/>
+                                <div><textarea id="ad_description" class="contact_textarea contact_input"
+                                               placeholder="Description"
+                                               required="required" style="background-color: white"></textarea></div>
+                                <br/>
+
+                            </div>
+                            <br/>
+                            <div>
+                                <div class="col-lg-6 contact_name_col">
+                                    <input id="ad_price" type="price" class="contact_input" placeholder="Price"
+                                           required="required"
+                                           style="background-color: white"/>
+                                    <input style="margin-left: 15px" type="checkbox" name="nego" value="nego"/>Negotiable
+                                </div>
+                            </div>
+                            <button class="sidebar_search_button_2 search_form_button_2" id="btnpost">Post</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4"><br/><br/>
+                    <label>Find Your Loaction</label><br/>
+                    <div id="map1" style="width:400px;height:400px;background:yellow"></div>
+                    <br/><br/>
+
+                    <h2>User Details</h2>
+                    <div>
+
+                        <label hidden>uid :</label><label id="userID" hidden></label><br/>
+                        <label>E-mail :</label><label id="useremail"></label><br/>
+                        <label>Name :</label><label id="username"></label><br/>
+                        <label>Address :</label><label id="useraddress"></label><br/>
+                        <label>Contact :</label><label id="usertel"></label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Newsletter -->
+
+<div class="newsletter">
+    <div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/newsletter.jpg"
+         data-speed="0.8"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="newsletter_content d-flex flex-lg-row flex-column align-items-start justify-content-start">
+                    <div class="newsletter_title_container">
+                        <div class="newsletter_title">Are you buying or selling?</div>
+                        <div class="newsletter_subtitle">Search your dream home</div>
+                    </div>
+                    <div class="newsletter_form_container">
+                        <form action="#" class="newsletter_form">
+                            <input type="email" class="newsletter_input" placeholder="Your e-mail address"
+                                   required="required"/>
+                            <button class="newsletter_button">subscribe now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+
+<footer class="footer">
+    <div class="footer_main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="footer_logo"><a href="#"><img src="images/logoo.png" alt=""/></a></div>
+                </div>
+                <div class="col-lg-9 d-flex flex-column align-items-start justify-content-end">
+                    <div class="footer_title">Latest Properties</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 footer_col">
+                    <div class="footer_about">
+                        <div class="footer_about_text">Donec in tempus leo. Aenean ultricies mauris sed quam lacinia
+                            lobortis. Cras ut vestibulum enim, in gravida nulla. Curab itur ornare nisl at sagittis
+                            cursus.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 footer_col">
+                    <div class="footer_latest d-flex flex-row align-items-start justify-content-start">
+                        <div>
+                            <div class="footer_latest_image"><img src="images/footer_latest_1.jpg" alt=""/></div>
+                        </div>
+                        <div class="footer_latest_content">
+                            <div class="footer_latest_location">Miami</div>
+                            <div class="footer_latest_name"><a href="#">Sea view property</a></div>
+                            <div class="footer_latest_price">$ 1. 234 981</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 footer_col">
+                    <div class="footer_latest d-flex flex-row align-items-start justify-content-start">
+                        <div>
+                            <div class="footer_latest_image"><img src="images/footer_latest_2.jpg" alt=""/></div>
+                        </div>
+                        <div class="footer_latest_content">
+                            <div class="footer_latest_location">Miami</div>
+                            <div class="footer_latest_name"><a href="#">Town House</a></div>
+                            <div class="footer_latest_price">$ 1. 234 981</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 footer_col">
+                    <div class="footer_latest d-flex flex-row align-items-start justify-content-start">
+                        <div>
+                            <div class="footer_latest_image"><img src="images/footer_latest_3.jpg" alt=""/></div>
+                        </div>
+                        <div class="footer_latest_content">
+                            <div class="footer_latest_location">Miami</div>
+                            <div class="footer_latest_name"><a href="#">Modern House</a></div>
+                            <div class="footer_latest_price">$ 1. 234 981</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer_bar">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="footer_bar_content d-flex flex-row align-items-center justify-content-start">
+                        <div class="footer_nav">
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="boardinghouses.html">Boadring Houses</a></li>
+                                <li><a href="users.html">Users</a></li>
+                                <li><a href="about.html">About us</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer_phone ml-auto"><span>call us: </span>+94 77 6143085</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="styles/bootstrap4/popper.js"></script>
+<script src="styles/bootstrap4/bootstrap.min.js"></script>
+<script src="plugins/easing/easing.js"></script>
+<script src="plugins/rangeslider.js-2.3.0/rangeslider.min.js"></script>
+<script src="plugins/parallax-js-master/parallax.min.js"></script>
+<script src="js/news.js"></script>
+<script src="js/login.js"></script>
+<script src="js/register.js"></script>
+<script src="js/ad.js"></script>
+<script src="node_modules/image-to-base64/image-to-base64.min.js"></script>
+</body>
+</html>
